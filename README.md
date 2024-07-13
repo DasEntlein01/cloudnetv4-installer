@@ -6,6 +6,6 @@ An unofficial CloudNet installer!
 You have to run the Script as root!
 
 ```bash
-wget ??? | chmod +x cloudnet-installer.sh | ./cloudnet-installer.sh
+wget ??? | chmod +x cloudnetv4-installer.sh | ./cloudnetv4-installer.sh
 ```
 
