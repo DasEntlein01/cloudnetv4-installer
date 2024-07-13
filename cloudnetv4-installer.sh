@@ -7,8 +7,6 @@ if [ "$(id -u)" -ne 0 ]; then
 fi
 
 # Begrüßung
-
-
 echo " /$$$$$$$                      /$$$$$$$$ /$$   /$$   /$$     /$$           /$$          "
 echo "| $$__  $$                    | $$_____/| $$$ | $$  | $$    | $$          |__/       "   
 echo "| $$  \ $$  /$$$$$$   /$$$$$$$| $$      | $$$$| $$ /$$$$$$  | $$  /$$$$$$  /$$ /$$$$$$$ "
@@ -27,7 +25,6 @@ echo "2) Deinstallieren"
 
 menu() {
     local choice
-    show_menu
     read -p "Wählen Sie eine Option: " choice
     case $choice in
         1) install_cloudnet ;;
