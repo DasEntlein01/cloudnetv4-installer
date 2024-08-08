@@ -6,7 +6,15 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
+# Konsole leeren
+clear
+
 # Sprachwahl
+echo " ____            _____       _   _      _       "
+echo "|  _ \  __ _ ___| ____|_ __ | |_| | ___(_)_ __  "
+echo "| | | |/ _\` / __|  _| | '_ \| __| |/ _ \ | '_ \ "
+echo "| |_| | (_| \__ \ |___| | | | |_| |  __/ | | | |"
+echo "|____/ \__,_|___/_____|_| |_|\__|_|\___|_|_| |_|"
 echo "Wählen Sie eine Sprache / Choose a language:"
 echo "1) Deutsch"
 echo "2) English"
