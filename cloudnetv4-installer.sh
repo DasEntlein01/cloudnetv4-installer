@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Überprüfen, ob das Skript als root ausgeführt wird
+# Ueberpruefen, ob das Skript als root ausgefuehrt wird
 if [ "$(id -u)" -ne 0 ]; then
-  echo "Bitte führen Sie das Script als root aus."
+  echo "Bitte fuehren Sie das Script als root aus."
   exit 1
 fi
 
-# Begrüßung
+# Begruessung
 echo " /$$$$$$$                      /$$$$$$$$ /$$   /$$   /$$     /$$           /$$          "
 echo "| $$__  $$                    | $$_____/| $$$ | $$  | $$    | $$          |__/       "   
 echo "| $$  \ $$  /$$$$$$   /$$$$$$$| $$      | $$$$| $$ /$$$$$$  | $$  /$$$$$$  /$$ /$$$$$$$ "
@@ -18,18 +18,18 @@ echo "|_______/  \_______/|_______/ |________/|__/  \__/   \___/  |__/ \_______/
                                                                                         
                                                                                         
 
-echo "Verwenden Sie die Pfeiltasten, um eine Option auszuwählen, und drücken Sie Enter."
+echo "Verwenden Sie die Pfeiltasten, um eine Option auszuwaehlen, und druecken Sie Enter."
 echo ""
 echo "1) Installieren"
 echo "2) Deinstallieren"
 
 menu() {
     local choice
-    read -p "Wählen Sie eine Option: " choice
+    read -p "Waehlen Sie eine Option: " choice
     case $choice in
         1) install_cloudnet ;;
         2) uninstall_cloudnet ;;
-        *) echo "Ungültige Auswahl" && menu ;;
+        *) echo "Ungueltige Auswahl" && menu ;;
     esac
 }
 
@@ -43,6 +43,9 @@ install_cloudnet() {
     # Installiere wget und unzip
     echo "Installiere wget..."
     apt install -y wget
+
+        echo "Installiere screen..."
+    apt install -y screen
 
     echo "Installiere unzip..."
     apt install -y unzip
@@ -61,13 +64,13 @@ install_cloudnet() {
     echo "Entpacke CloudNet.zip..."
     unzip CloudNet.zip
 
-    # Entferne nicht benötigte Startdateien
-    echo "Entferne nicht benötigte Startdateien..."
+    # Entferne nicht benoetigte Startdateien
+    echo "Entferne nicht benoetigte Startdateien..."
     rm -r start.bat
     rm -r start.command
 
-    # Mache die start.sh Datei ausführbar
-    echo "Mache die start.sh Datei ausführbar..."
+    # Mache die start.sh Datei ausfuehrbar
+    echo "Mache die start.sh Datei ausfuehrbar..."
     chmod +x start.sh
 
     # Starte CloudNet
@@ -83,13 +86,13 @@ install_cloudnet() {
 uninstall_cloudnet() {
     echo "Starte die Deinstallation..."
 
-    # Lösche das CloudNet-Verzeichnis
-    echo "Lösche das Verzeichnis /home/cloud..."
+    # Loesche das CloudNet-Verzeichnis
+    echo "Loesche das Verzeichnis /home/cloud..."
     rm -rf /home/cloud
 
     # Abschlussnachricht
     echo "Deinstallation abgeschlossen."
 }
 
-# Hauptmenü aufrufen
+# Hauptmenue aufrufen
 menu
