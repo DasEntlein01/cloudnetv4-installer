@@ -1,6 +1,9 @@
 # cloudnetv4-installer
 An unofficial CloudNet installer!
 
+Currently only for Linux!
+
+
 
 ## Install
 You have to run the Script as root!
