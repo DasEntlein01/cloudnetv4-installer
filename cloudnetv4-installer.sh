@@ -157,6 +157,8 @@ uninstall_cloudnet() {
     echo "$remove_dir"
     rm -rf /home/cloud
 
+    rm -r cloudnetv4-installer.sh
+
     # Abschlussnachricht
     echo "$uninstall_complete"
 }
