@@ -51,6 +51,7 @@ if [ "$language" == "de" ]; then
     start_uninstall="Starte die Deinstallation..."
     remove_dir="Lösche das Verzeichnis /home/cloud..."
     uninstall_complete="Deinstallation abgeschlossen."
+    install_java="Installiere Java.."
 else
     greeting="Use the arrow keys to select an option, and press Enter."
     install_option="1) Install"
@@ -71,9 +72,15 @@ else
     start_uninstall="Starting uninstallation..."
     remove_dir="Removing /home/cloud directory..."
     uninstall_complete="Uninstallation complete."
+    install_java="Installing Java.."
 fi
 
 menu() {
+    echo "$greeting"
+    echo ""
+    echo "$install_option"
+    echo "$uninstall_option"
+    echo ""
     local choice
     read -p "$choose_option" choice
     case $choice in
@@ -97,6 +104,10 @@ install_cloudnet() {
     echo "$install_unzip"
     apt install -y unzip
 
+    echo "$install_java"
+    wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
+    sudo dpkg -i jdk-21_linux-x64_bin.deb
+
     # Erstelle das Verzeichnis /home/cloud und wechsle hinein
     echo "$create_dir"
     cd /home
@@ -110,6 +121,8 @@ install_cloudnet() {
     # Entpacke CloudNet.zip
     echo "$unzip_cloudnet"
     unzip CloudNet.zip
+
+    
 
     # Entferne nicht benötigte Startdateien
     echo "$remove_unused"
@@ -127,7 +140,6 @@ install_cloudnet() {
     # Abschlussnachricht
     echo "$installation_complete"
 }
-
 
 # Deinstallation von CloudNet
 uninstall_cloudnet() {
