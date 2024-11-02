@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# Ueberpruefen, ob das Skript als root ausgefuehrt wird
 if [ "$(id -u)" -ne 0 ]; then
   echo "Bitte fuehren Sie das Script als root aus."
   exit 1
 fi
 
-# Konsole leeren
 clear
 
-# Sprachwahl
 echo " ____            _____       _   _      _       "
 echo "|  _ \  __ _ ___| ____|_ __ | |_| | ___(_)_ __  "
 echo "| | | |/ _\` / __|  _| | '_ \| __| |/ _ \ | '_ \ "
@@ -31,14 +28,12 @@ language_menu() {
 
 language_menu
 
-# ASCII-Art
 echo " ____            _____       _   _      _       "
 echo "|  _ \  __ _ ___| ____|_ __ | |_| | ___(_)_ __  "
 echo "| | | |/ _\` / __|  _| | '_ \| __| |/ _ \ | '_ \ "
 echo "| |_| | (_| \__ \ |___| | | | |_| |  __/ | | | |"
 echo "|____/ \__,_|___/_____|_| |_|\__|_|\___|_|_| |_|"
 
-# Sprachabhängige Texte
 if [ "$language" == "de" ]; then
     greeting="Verwenden Sie die Pfeiltasten, um eine Option auszuwählen, und drücken Sie Enter."
     install_option="1) Installieren"
@@ -100,68 +95,39 @@ menu() {
 
 install_cloudnet() {
     echo "$start_install"
-
-    # Update der Paketliste
     echo "$update_packages"
     apt update
-
-    # Installiere wget und unzip
     echo "$install_wget"
     apt install -y wget
-
     echo "$install_unzip"
     apt install -y unzip
-
     echo "$install_java"
     wget https://download.oracle.com/java/21/latest/jdk-21_linux-x64_bin.deb
     sudo dpkg -i jdk-21_linux-x64_bin.deb
-
-    # Erstelle das Verzeichnis /home/cloud und wechsle hinein
     echo "$create_dir"
     cd /home
     mkdir -p cloud
     cd cloud
-
-    # Lade CloudNet herunter
     echo "$download_cloudnet"
     wget https://github.com/CloudNetService/CloudNet/releases/download/4.0.0-RC10/CloudNet.zip
-
-    # Entpacke CloudNet.zip
     echo "$unzip_cloudnet"
     unzip CloudNet.zip
-
-    
-
-    # Entferne nicht benötigte Startdateien
     echo "$remove_unused"
     rm -r start.bat
     rm -r start.command
-
-    # Mache die start.sh Datei ausführbar
     echo "$make_executable"
     chmod +x start.sh
-
-    # Starte CloudNet
     echo "$start_cloudnet"
     ./start.sh
-
-    # Abschlussnachricht
     echo "$installation_complete"
 }
 
-# Deinstallation von CloudNet
 uninstall_cloudnet() {
     echo "$start_uninstall"
-
-    # Lösche das CloudNet-Verzeichnis
     echo "$remove_dir"
     rm -rf /home/cloud
-
     rm -r cloudnetv4-installer.sh
-
-    # Abschlussnachricht
     echo "$uninstall_complete"
 }
 
-# Hauptmenü aufrufen
 menu
