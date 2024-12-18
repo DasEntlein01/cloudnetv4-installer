@@ -109,7 +109,7 @@ install_cloudnet() {
     mkdir -p cloud
     cd cloud
     echo "$download_cloudnet"
-    wget https://github.com/CloudNetService/CloudNet/releases/download/4.0.0-RC10/CloudNet.zip
+    wget https://github.com/CloudNetService/CloudNet/releases/download/4.0.0-RC11.1/CloudNet.zip
     echo "$unzip_cloudnet"
     unzip CloudNet.zip
     echo "$remove_unused"
